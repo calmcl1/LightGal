@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lightgal by calmcl1</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Lightgal</h1>
+        <p>A minimal, CSS-3 based image rotator with optional thumbnails and fading.</p>
+        <p class="view"><a href="https://github.com/calmcl1/LightGal">View the Project on GitHub <small>calmcl1/LightGal</small></a></p>
+        <ul>
+          <li><a href="https://github.com/calmcl1/LightGal/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/calmcl1/LightGal/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/calmcl1/LightGal">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>What is LightGal?</h3>
+
+<p>LightGal is a lightweight image gallery, based on CSS3 image transitions. It can snap between images or fade in/out. It is fully customizable, yet unobtrusive.</p>
+
+<h3>How do I implement LightGal?</h3>
+
+<p>Download LightGal <a href="https://github.com/calmcl1/LightGal">from GitHub</a>.</p>
+
+<p>Add the following line to your HEAD tag:
+<code>&lt;script src="path/to/lightgal.min.js"&gt;&lt;/script&gt;</code></p>
+
+<p>And add this to the BODY tag:</p>
+
+<pre><code>&lt;div id="gallery"&gt;
+    &lt;img src="img/pic_1.png" /&gt;
+    &lt;img src="img/pic_2.png" /&gt;
+    &lt;img src="img/pic_3.png" /&gt;
+    &lt;img src="img/pic_4.png" /&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var lg = new LightGal();
+lg.begin(document.getElementById("gallery"));
+&lt;/script&gt;
+</code></pre>
+
+<p>With this method, you can have multiple galleries on the same page, should you wish.</p>
+
+<h3>How do I customize LightGal?</h3>
+
+<p>All of the options for a given gallery can be passed like so:</p>
+
+<pre><code>var lg = new LightGal({
+    main_width: 640,
+    main_height: 480
+});
+</code></pre>
+
+<p>The acceptable options are:</p>
+
+<ul>
+<li>
+<code>fade</code> <em>(true/false)</em>: If true, then fade between images. If false, no transition. Default: <code>true</code>.</li>
+<li>
+<code>fade_time</code> <em>(number)</em>: The time (in milliseconds) it takes to fade between images. Ignored if <code>fade</code> is false. Default: <code>1000</code>.</li>
+<li>
+<code>display_time</code> <em>(number)</em>: The time (in milliseconds) to show an image for before moving on. Default: <code>2000</code>.</li>
+<li>
+<code>display_thumbs</code> <em>(true/false)</em>: If true, displays a 'filmstrip' style row of thumbnails that the user can navigate through the gallery with. Default: <code>false</code>.</li>
+<li>
+<code>main_width</code> <em>(number)</em>: The width of the gallery image. Default: <code>400</code> px.</li>
+<li>
+<code>main_height</code> <em>(number)</em>: The height of the gallery image. Default: <code>300</code> px.</li>
+<li>
+<code>thumb_width</code> <em>(number)</em>: The width of the thumbnails, if used. Default: <code>165</code> px.</li>
+<li>
+<code>thumb_height</code> <em>(number)</em>: The height of the thumbnails, if used. Default: <code>110</code> px.</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/calmcl1">calmcl1</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
