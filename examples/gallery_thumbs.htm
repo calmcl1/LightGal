@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LightGal Example Gallery - No Thumbnails</title>
+        <script type="text/javascript" src="../lightgal.min.js"></script>
+    </head>
+    <body>
+        <div id="gal">
+            <img src="img-1.jpg" />
+            <img src="img-2.jpg" />
+            <img src="img-3.jpg" />
+            <img src="img-4.jpg" />
+        </div>
+        
+        <script type="text/javascript">
+            var lg = new LightGal({
+                    main_width: 640,
+                    main_height: 480
+                })
+            lg.begin(document.getElementById('gal'));
+        </script>
+    </body>
+</html>
