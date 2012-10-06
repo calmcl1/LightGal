@@ -21,6 +21,26 @@ function LightGal(options) {
 	if (!this.opts.fade) this.opts.fade_time = 0;
 };
 
+LightGal.prototype.userSelectImage = function (e){	
+	if (!typeof e.target === HTMLImageElement) return false; // Just to be sure
+	
+	this.doLoop = false;
+	
+	/* Fade out the image by adding the 'lg_hidden' class */
+	this.curr_img.className = "lg_hide lg_hidden";
+	
+	/* Change the source and fade back in */
+	setTimeout(function(){
+		var next_src = this.srcs[this.getNextSrc()];
+		this.curr_img.setAttribute('src', e.target.getAttribute('src'));
+		this.curr_img.className = "lg_hide";
+	}.bind(this), this.opts.fade_time);
+	
+	setTimeout(function(){
+		this.doLoop = true;
+	}.bind(this), this.opts.display_time);
+}
+
 LightGal.prototype.begin = function (el){
 	/* The images to be LightGal'd are contained in an element, which
 	 * is passed to this function.*/
@@ -78,11 +98,13 @@ LightGal.prototype.begin = function (el){
 			thumb.setAttribute('height', this.opts.thumb_height);
 			thumb.setAttribute('src', this.srcs[i]);
 			this.thumb_el.appendChild(thumb);
+			thumb.addEventListener('click', this.userSelectImage.bind(this), false);
 		}
 		el.appendChild(this.thumb_el);
 	}
 	
 	/* Begin transition loop */
+	this.doLoop = true;
 	this.transition();
 	
 }
@@ -107,15 +129,18 @@ LightGal.prototype.transition = function(){
 	
 	setInterval(function(){
 		
-		/* Fade out the image by adding the 'lg_hidden' class */
-		this.curr_img.className = "lg_hide lg_hidden";
+		if (this.doLoop){
 		
-		/* Change the source and fade back in */
-		setTimeout(function(){
-			var next_src = this.srcs[this.getNextSrc()];
-			this.curr_img.setAttribute('src', next_src);
-			this.curr_img.className = "lg_hide";
-		}.bind(this), this.opts.fade_time);		
+			/* Fade out the image by adding the 'lg_hidden' class */
+			this.curr_img.className = "lg_hide lg_hidden";
+			
+			/* Change the source and fade back in */
+			setTimeout(function(){
+				var next_src = this.srcs[this.getNextSrc()];
+				this.curr_img.setAttribute('src', next_src);
+				this.curr_img.className = "lg_hide";
+			}.bind(this), this.opts.fade_time);
+		}
 		
 	}.bind(this), this.opts.display_time + this.opts.fade_time*2);
 }
