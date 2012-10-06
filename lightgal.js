@@ -22,7 +22,7 @@ function LightGal(options) {
 };
 
 LightGal.prototype.userSelectImage = function (e){	
-	if (!typeof e.target === HTMLImageElement) return false; // Just to be sure
+	if (!typeof e.target === HTMLImageElement) return; // Just to be sure
 	
 	this.doLoop = false;
 	
@@ -136,9 +136,11 @@ LightGal.prototype.transition = function(){
 			
 			/* Change the source and fade back in */
 			setTimeout(function(){
-				var next_src = this.srcs[this.getNextSrc()];
-				this.curr_img.setAttribute('src', next_src);
-				this.curr_img.className = "lg_hide";
+				if (this.doLoop){
+					var next_src = this.srcs[this.getNextSrc()];
+					this.curr_img.setAttribute('src', next_src);
+					this.curr_img.className = "lg_hide";
+				}
 			}.bind(this), this.opts.fade_time);
 		}
 		
