@@ -49,18 +49,31 @@ LightGal.prototype.begin = function (el){
 	 * into the DOM. However, this only needs to be done once, so check
 	 * for existing entries. */
 	
+	/* NOTE - is it best practice to loop through each CSS rule and try to
+	 * modify the contents directly or inject a <style> element? Browser
+	 * inconsistency makes the former tricky but the latter just seems
+	 * sloppy. */
+	
 	if (document.getElementsByName("lg_style").length === 0 && this.opts.fade){
-		this.styleSheet = null;
+		var styleSheet = null;
 		for (i=0; i<document.styleSheets.length; i++){
 			console.log(document.styleSheets[i]);
 			if (document.styleSheets[i].title == "lg-styles"){
-				this.styleSheet = document.styleSheets[i];
+				styleSheet = document.styleSheets[i];
 				break;
 			}
 		}
-		console.log(this.styleSheet);
-		console.log(this.styleSheet.rules);
-		this.styleSheet.styles["rules"][".lg_hide"].style["transition-duration"] = this.opts.fade_time / 2 + "ms"
+		console.log(styleSheet);
+		console.log(styleSheet.rules);
+		for (j=0; j<styleSheet.rules.length; j++){
+			if (styleSheet.rules[j].selectorText === ".lg_hide"){
+				var hide_rule = styleSheet.rules[j].style;
+				
+				console.log(hide_rule);
+				console.log(hide_rule[0]);
+			}
+		}
+		//styleSheet.rules[".lg_hide"].style["transition-duration"] = this.opts.fade_time / 2 + "ms"
 	}
 	
 	/* Gather the sources of the images to be LightGal'd. */

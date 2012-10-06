@@ -1,7 +1,5 @@
 /* LightGal element styles */
-h1{
-    
-}
+
 /* Used to fade out images */
 .lg_hidden{
     opacity: 0;
@@ -16,14 +14,9 @@ h1{
 #lg_thumbs img:hover{
     opacity: 1;
 }
-/*
-		style_el.appendChild(document.createTextNode(".lg_hide{"));
-		style_el.appendChild(document.createTextNode("transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-webkit-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-moz-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-o-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("}"));
-                */
+
+/* Used to set image fade times. Manipulated by lightgal.js */
+
 .lg_hide{
     transition-property: opacity;
     transition-timing-function: linear;
