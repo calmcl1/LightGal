@@ -50,18 +50,17 @@ LightGal.prototype.begin = function (el){
 	 * for existing entries. */
 	
 	if (document.getElementsByName("lg_style").length === 0 && this.opts.fade){
-		var style_el = document.createElement('style');
-		style_el.setAttribute("name", "lg_style")
-		
-		style_el.appendChild(document.createTextNode(".lg_hide{"));
-		style_el.appendChild(document.createTextNode("transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-webkit-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-moz-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("-o-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
-		style_el.appendChild(document.createTextNode("}"));
-		
-		var head = document.getElementsByTagName("head")[0];
-		head.appendChild(style_el);
+		this.styleSheet = null;
+		for (i=0; i<document.styleSheets.length; i++){
+			console.log(document.styleSheets[i]);
+			if (document.styleSheets[i].title == "lg-styles"){
+				this.styleSheet = document.styleSheets[i];
+				break;
+			}
+		}
+		console.log(this.styleSheet);
+		console.log(this.styleSheet.rules);
+		this.styleSheet.styles["rules"][".lg_hide"].style["transition-duration"] = this.opts.fade_time / 2 + "ms"
 	}
 	
 	/* Gather the sources of the images to be LightGal'd. */

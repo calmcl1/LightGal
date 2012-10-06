@@ -1,5 +1,7 @@
 /* LightGal element styles */
-
+h1{
+    
+}
 /* Used to fade out images */
 .lg_hidden{
     opacity: 0;
@@ -14,5 +16,25 @@
 #lg_thumbs img:hover{
     opacity: 1;
 }
-
-#lg_thumbs .current
+/*
+		style_el.appendChild(document.createTextNode(".lg_hide{"));
+		style_el.appendChild(document.createTextNode("transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
+		style_el.appendChild(document.createTextNode("-webkit-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
+		style_el.appendChild(document.createTextNode("-moz-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
+		style_el.appendChild(document.createTextNode("-o-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
+		style_el.appendChild(document.createTextNode("}"));
+                */
+.lg_hide{
+    transition-property: opacity;
+    transition-timing-function: linear;
+    transition-duration: 0s;
+    -webkit-transition-property: opacity;
+    -webkit-transition-timing-function: linear;
+    -webkit-transition-duration: 0s;
+    -moz-transition-property: opacity;
+    -moz-transition-timing-function: linear;
+    -moz-transition-duration: 0s;
+    -o-transition-property: opacity;
+    -o-transition-timing-function: linear;
+    -o-transition-duration: 0s;
+}
