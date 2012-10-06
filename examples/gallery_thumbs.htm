@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LightGal Example Gallery - No Thumbnails</title>
+        <title>LightGal Example Gallery - Thumbnails</title>
         <script type="text/javascript" src="../lightgal.min.js"></script>
     </head>
     <body>
@@ -15,7 +15,10 @@
         <script type="text/javascript">
             var lg = new LightGal({
                     main_width: 640,
-                    main_height: 480
+                    main_height: 480,
+                    display_thumbs: true,
+                    thumb_width: 160,
+                    thumb_height: 120
                 })
             lg.begin(document.getElementById('gal'));
         </script>
