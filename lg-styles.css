@@ -1,0 +1,18 @@
+/* LightGal element styles */
+
+/* Used to fade out images */
+.lg_hidden{
+    opacity: 0;
+}
+
+/* Used for thumbnail cursor */
+#lg_thumbs img{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#lg_thumbs img:hover{
+    opacity: 1;
+}
+
+#lg_thumbs .current

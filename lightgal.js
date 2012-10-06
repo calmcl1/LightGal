@@ -39,9 +39,6 @@ LightGal.prototype.begin = function (el){
 		style_el.appendChild(document.createTextNode("-moz-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
 		style_el.appendChild(document.createTextNode("-o-transition: opacity " + this.opts.fade_time/2 + "ms linear;"));
 		style_el.appendChild(document.createTextNode("}"));
-		style_el.appendChild(document.createTextNode(".lg_hidden{"));
-		style_el.appendChild(document.createTextNode("opacity: 0;"));
-		style_el.appendChild(document.createTextNode("}"));
 		
 		var head = document.getElementsByTagName("head")[0];
 		head.appendChild(style_el);
@@ -49,19 +46,15 @@ LightGal.prototype.begin = function (el){
 	
 	/* Gather the sources of the images to be LightGal'd. */
 	
-	//console.log("INFO: Initiating LightGal on element with ID '" + el.getAttribute('id') + "'");
 	images = el.getElementsByTagName('img');
 	this.srcs = [];
 	for (i=0; i<images.length; i++){
 		this.srcs.push(images[i].getAttribute('src'));
-		//console.log("INFO: Got image source URL: " + images[i].getAttribute('src'));
 	}
 	
 	/* And remove the original images. */
 	
 	el.innerHTML = "";
-	
-	//console.log("INFO: Removed initial element.")
 	
 	/* Replace them with our own element, which we can more easily control */
 	
@@ -73,16 +66,20 @@ LightGal.prototype.begin = function (el){
 	this.curr_img.className = "lg_hide";
 	
 	el.appendChild(this.curr_img);
-	//console.log("INFO: Added LightGal element.");
+	
+	/* And create the thumbnails in a child element */
 	
 	if (this.opts.display_thumbs){
+		this.thumb_el = document.createElement('div');
+		this.thumb_el.setAttribute('id', 'lg_thumbs');
 		for (i=0; i<this.srcs.length;i++){
 			var thumb = document.createElement('img');
 			thumb.setAttribute('width', this.opts.thumb_width);
 			thumb.setAttribute('height', this.opts.thumb_height);
 			thumb.setAttribute('src', this.srcs[i]);
-			el.appendChild(thumb);
+			this.thumb_el.appendChild(thumb);
 		}
+		el.appendChild(this.thumb_el);
 	}
 	
 	/* Begin transition loop */
