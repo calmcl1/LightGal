@@ -121,7 +121,6 @@ LightGal.prototype.transition = function(){
 		
 		if (this.doLoop){
 			/* Fade out the image by adding the 'lg_hidden' class */
-			//this.curr_img.className = "lg_hide lg_hidden";
 			this.curr_img.className = "lg_hidden";
 			
 			/* Change the source and fade back in */
