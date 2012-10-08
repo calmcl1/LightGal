@@ -7,7 +7,7 @@ A minimal, CSS-3 based image rotator with optional thumbnails and fading.
 LightGal is a lightweight image gallery, based on CSS3 image transitions. It can snap between images or fade in/out. It is fully customizable, yet unobtrusive.
 
 ### Which browsers support LightGal?
-All the modern ones, with the exception of IE9 (well, what did you expect?)
+All the modern ones, with the exception of IE 9 and below (well, what did you expect?)
 The core functionality behind this is the CSS3 transition property, so if your browser falls into [this compatibility table](https://developer.mozilla.org/en-US/docs/CSS/Using_CSS_transitions#Browser_compatibility), then LightGal should work.
 
 ### How do I implement LightGal?
