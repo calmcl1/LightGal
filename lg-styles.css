@@ -17,7 +17,7 @@
 
 /* Used to set image fade times. Manipulated by lightgal.js */
 
-.lg_hide{
+/*.lg_hide{
     transition-property: opacity;
     transition-timing-function: linear;
     transition-duration: 0s;
@@ -30,4 +30,4 @@
     -o-transition-property: opacity;
     -o-transition-timing-function: linear;
     -o-transition-duration: 0s;
-}
+}*/

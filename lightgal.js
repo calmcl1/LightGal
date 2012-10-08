@@ -27,13 +27,13 @@ LightGal.prototype.userSelectImage = function (e){
 	this.doLoop = false;
 	
 	/* Fade out the image by adding the 'lg_hidden' class */
-	this.curr_img.className = "lg_hide lg_hidden";
+	this.curr_img.className = "lg_hidden";
 	
 	/* Change the source and fade back in */
 	setTimeout(function(){
 		var next_src = this.srcs[this.getNextSrc()];
 		this.curr_img.setAttribute('src', e.target.getAttribute('src'));
-		this.curr_img.className = "lg_hide";
+		this.curr_img.className = "";
 	}.bind(this), this.opts.fade_time);
 	
 	setTimeout(function(){
@@ -48,33 +48,6 @@ LightGal.prototype.begin = function (el){
 	/* We need to create a style for the CSS3 fade-in/out and insert it
 	 * into the DOM. However, this only needs to be done once, so check
 	 * for existing entries. */
-	
-	/* NOTE - is it best practice to loop through each CSS rule and try to
-	 * modify the contents directly or inject a <style> element? Browser
-	 * inconsistency makes the former tricky but the latter just seems
-	 * sloppy. */
-	
-	if (document.getElementsByName("lg_style").length === 0 && this.opts.fade){
-		var styleSheet = null;
-		for (i=0; i<document.styleSheets.length; i++){
-			console.log(document.styleSheets[i]);
-			if (document.styleSheets[i].title == "lg-styles"){
-				styleSheet = document.styleSheets[i];
-				break;
-			}
-		}
-		console.log(styleSheet);
-		console.log(styleSheet.rules);
-		for (j=0; j<styleSheet.rules.length; j++){
-			if (styleSheet.rules[j].selectorText === ".lg_hide"){
-				var hide_rule = styleSheet.rules[j].style;
-				
-				console.log(hide_rule);
-				console.log(hide_rule[0]);
-			}
-		}
-		//styleSheet.rules[".lg_hide"].style["transition-duration"] = this.opts.fade_time / 2 + "ms"
-	}
 	
 	/* Gather the sources of the images to be LightGal'd. */
 	
@@ -95,7 +68,12 @@ LightGal.prototype.begin = function (el){
 	this.curr_img.setAttribute('src', this.srcs[0]);
 	this.curr_img.setAttribute('width', this.opts.main_width);
 	this.curr_img.setAttribute('height', this.opts.main_height);
-	this.curr_img.className = "lg_hide";
+	
+	/* Different browsers implement the CSS3 transition style differently, so get the
+	 * relevant property name. Then, create an inline style for the curr_img element. */
+	
+	var cssTransform=getSupportedProp(['transition', 'MozTransition', 'WebkitTransition', 'msTransition', 'OTransition']);
+	this.curr_img.style[cssTransform] = "opacity " + this.opts.fade_time/2 + "ms linear";
 	
 	el.appendChild(this.curr_img);
 	
@@ -142,19 +120,31 @@ LightGal.prototype.transition = function(){
 	setInterval(function(){
 		
 		if (this.doLoop){
-		
 			/* Fade out the image by adding the 'lg_hidden' class */
-			this.curr_img.className = "lg_hide lg_hidden";
+			//this.curr_img.className = "lg_hide lg_hidden";
+			this.curr_img.className = "lg_hidden";
 			
 			/* Change the source and fade back in */
 			setTimeout(function(){
 				if (this.doLoop){
 					var next_src = this.srcs[this.getNextSrc()];
 					this.curr_img.setAttribute('src', next_src);
-					this.curr_img.className = "lg_hide";
+					this.curr_img.className = "";
 				}
 			}.bind(this), this.opts.fade_time);
 		}
 		
 	}.bind(this), this.opts.display_time + this.opts.fade_time*2);
+}
+
+function getSupportedProp(propArray){
+/* For browsers that implement CSS3 styles in different ways, when a
+ * list of potential properties is supplied, return the correct one */
+
+    var root=document.documentElement;
+    for (var i=0; i<propArray.length; i++){
+        if (typeof root.style[propArray[i]]=="string"){
+            return propArray[i];
+        }
+    }
 }
