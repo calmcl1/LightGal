@@ -82,6 +82,16 @@ LightGal.prototype.begin = function (el){
 	if (this.opts.display_thumbs){
 		this.thumb_el = document.createElement('div');
 		this.thumb_el.setAttribute('id', 'lg_thumbs');
+		this.thumb_el.style.width = this.opts.main_width + "px";
+		this.thumb_el.style.height = this.opts.thumb_height + "px";
+		
+		this.thumb_nav_l = document.createElement('a');
+		this.thumb_nav_r = document.createElement('a');
+		this.thumb_nav_l.appendChild(document.createTextNode('<'));
+		this.thumb_nav_r.appendChild(document.createTextNode('>'));
+		
+		this.thumb_el.appendChild(this.thumb_nav_l);
+		
 		for (i=0; i<this.srcs.length;i++){
 			var thumb = document.createElement('img');
 			thumb.setAttribute('width', this.opts.thumb_width);
@@ -90,6 +100,7 @@ LightGal.prototype.begin = function (el){
 			this.thumb_el.appendChild(thumb);
 			thumb.addEventListener('click', this.userSelectImage.bind(this), false);
 		}
+		this.thumb_el.appendChild(this.thumb_nav_r);
 		el.appendChild(this.thumb_el);
 	}
 	

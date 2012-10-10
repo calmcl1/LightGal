@@ -5,6 +5,12 @@
     opacity: 0;
 }
 
+#lg_thumbs{
+    /*width: 100%;*/
+    text-align: center;
+    overflow: hidden;
+}
+
 /* Used for thumbnail cursor */
 #lg_thumbs img{
     cursor: pointer;
